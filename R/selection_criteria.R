@@ -1,7 +1,6 @@
-# cobiclust R package
-# Copyright INRA 2017
-# UMR MIA-Paris, AgroParisTech, INRA, Universite Paris-Saclay, 75005, Paris, France
-####################################################################################
+# cobiclust R package Copyright INRAE 2024 Universite Paris-Saclay,
+# AgroParisTech, INRAE, UMR MIA Paris-Saclay, 91120, Palaiseau, France
+
 #' Calculate selection criteria.
 #'
 #' @param x The output of the cobiclust function.
@@ -19,8 +18,20 @@
 #' }
 #' @export
 
-selection_criteria <-
-  function(x, K, G){
+selection_criteria <- function(x, K = NULL,
+    G = NULL) {
+    if (is.null(K)) {
+        K <- x$K
+    } else {
+        assertthat::assert_that(K == x$K,
+            msg = "K and x$K are not the same. Please choose K equal to x$K.")
+    }
+    if (is.null(G)) {
+        G <- x$G
+    } else {
+        assertthat::assert_that(G == x$G,
+            msg = "G and x$G are not the same. Please choose G equal to x$G.")
+    }
     K <- x$K
     G <- x$G
     lb <- x$info$lb
@@ -28,6 +39,6 @@ selection_criteria <-
     BIC <- lb - penKG
     ent_ZW <- x$info$ent_ZW
     vICL <- BIC - ent_ZW
-    a_tilde <- x$info$a_tilde
-    return(cbind(vICL = vICL, BIC = BIC, penKG = penKG, lb = lb, entZW = ent_ZW, K = K, G = G))
-  }
+    return(cbind(vICL = vICL, BIC = BIC, penKG = penKG,
+        lb = lb, entZW = ent_ZW, K = K, G = G))
+}

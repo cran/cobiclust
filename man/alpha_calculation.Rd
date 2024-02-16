@@ -2,10 +2,18 @@
 % Please edit documentation in R/utility_functions.R
 \name{alpha_calculation}
 \alias{alpha_calculation}
-\title{Calculate the matrix (alpha_{k,g})}
+\title{Calculate the matrix of interaction terms between groups of species and groups of sample}
 \usage{
-alpha_calculation(s_ik = s_ik, t_jg = t_jg, nu_j = nu_j, mu_i = mu_i,
-  K = K, G = G, x = x, exp_utilde = exp_utilde)
+alpha_calculation(
+  s_ik = s_ik,
+  t_jg = t_jg,
+  nu_j = nu_j,
+  mu_i = mu_i,
+  K = K,
+  G = G,
+  x = x,
+  exp_utilde = exp_utilde
+)
 }
 \arguments{
 \item{s_ik}{s_ik.}
@@ -28,6 +36,6 @@ alpha_calculation(s_ik = s_ik, t_jg = t_jg, nu_j = nu_j, mu_i = mu_i,
 a matrix of dimension (\code{K},\code{G}) of the terms of interactions.
 }
 \description{
-Calculate the matrix (alpha_{k,g})
+Calculate the matrix of interaction terms between groups of species and groups of sample
 }
 \keyword{internal}

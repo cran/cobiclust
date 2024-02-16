@@ -4,8 +4,17 @@
 \alias{cobiclust}
 \title{Perform a biclustering adapted to overdispersed count data.}
 \usage{
-cobiclust(x, K = 2, G = 3, nu_j = NULL, a = NULL, akg = FALSE,
-  cvg_lim = 1e-05, nbiter = 5000)
+cobiclust(
+  x,
+  K = 2,
+  G = 3,
+  nu_j = NULL,
+  a = NULL,
+  akg = FALSE,
+  cvg_lim = 1e-05,
+  nbiter = 5000,
+  tol = 1e-04
+)
 }
 \arguments{
 \item{x}{the input matrix of observed data.}
@@ -14,15 +23,17 @@ cobiclust(x, K = 2, G = 3, nu_j = NULL, a = NULL, akg = FALSE,
 
 \item{G}{an integer specifying the number of groups in columns.}
 
-\item{nu_j}{a vector of . The length is equal to the number of colums.}
+\item{nu_j}{a vector of numeric, corresponding of a column (sampling effort) effect.}
 
-\item{a}{an numeric.}
+\item{a}{a numeric dispersion parameter (parameter of the gamma distribution).}
 
-\item{akg}{a logical variable indicating whether to use a common dispersion parameter (akg = FALSE) or a dispersion parameter per cocluster (akg = TRUE).}
+\item{akg}{a logical variable indicating whether to use a common dispersion parameter (\code{akg = FALSE}) or not.}
 
-\item{cvg_lim}{a number specifying the threshold used for convergence criterion (cvg_lim = 1e-05 by default).}
+\item{cvg_lim}{a number specifying the threshold used for convergence criterion.}
 
-\item{nbiter}{the maximal number of iterations for the global loop of variational EM algorithm (nbiter = 5000  by default).}
+\item{nbiter}{the maximal number of iterations for the global loop of variational EM algorithm (\code{nbiter = 5000}  by default).}
+
+\item{tol}{the level of relative iteration convergence tolerance (\code{tol = 1e-04}  by default).}
 }
 \value{
 An object of class cobiclustering
@@ -34,19 +45,21 @@ Perform a biclustering adapted to overdispersed count data.
 npc <- c(50, 40) # nodes per class
 KG <- c(2, 3) # classes
 nm <- npc * KG # nodes
-Z <- diag( KG[1]) \%x\% matrix(1, npc[1], 1)
+Z <- diag(KG[1]) \%x\% matrix(1, npc[1], 1)
 W <- diag(KG[2]) \%x\% matrix(1, npc[2], 1)
-L <- 70 * matrix( runif( KG[1] * KG[2]), KG[1], KG[2])
+L <- 70*matrix(runif(KG[1] * KG[2]), KG[1], KG[2])
 M_in_expectation <- Z \%*\% L \%*\% t(W)
 size <- 50
-M<-matrix(
- rnbinom(
-   n = length(as.vector(M_in_expectation)),
-   mu = as.vector(M_in_expectation), size = size)
- , nm[1], nm[2])
-rownames(M) <- paste("OTU", 1:nrow(M), sep = "_")
-colnames(M) <- paste("S", 1:ncol(M), sep = "_")
-res <- cobiclust(M, K = 2, G = 3, nu_j = rep(1,120), a = 1/size, cvg_lim = 1e-5)
+M <- matrix(
+  rnbinom(
+    n = length(as.vector(M_in_expectation)),
+    mu = as.vector(M_in_expectation), size = size
+  ),
+  nm[1], nm[2]
+)
+rownames(M) <- paste('OTU', 1:nrow(M), sep = '_')
+colnames(M) <- paste('S', 1:ncol(M), sep = '_')
+res <- cobiclust(M, K = 2, G = 3, nu_j = rep(1, 120), a = 1 / size, cvg_lim = 1e-5)
 }
 \seealso{
 \code{\link{cobiclustering}} for the cobiclustering class.

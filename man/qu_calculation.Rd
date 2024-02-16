@@ -2,10 +2,17 @@
 % Please edit documentation in R/utility_functions.R
 \name{qu_calculation}
 \alias{qu_calculation}
-\title{Calculate E_q(U_{ijr}) and E_q(log U_{ijr}) when U_ijr follows a Gamma(a,a)}
+\title{Calculate approximate conditional moment of the third hidden layer U}
 \usage{
-qu_calculation(s_ik = s_ik, t_jg = t_jg, x = x, mu_i = mu_i,
-  nu_j = nu_j, alpha_c = alpha_c, a = a)
+qu_calculation(
+  s_ik = s_ik,
+  t_jg = t_jg,
+  x = x,
+  mu_i = mu_i,
+  nu_j = nu_j,
+  alpha_c = alpha_c,
+  a = a
+)
 }
 \arguments{
 \item{s_ik}{s_ik.}
@@ -16,11 +23,11 @@ qu_calculation(s_ik = s_ik, t_jg = t_jg, x = x, mu_i = mu_i,
 
 \item{mu_i}{mu_i.}
 
-\item{nu_j}{nu_j.}
+\item{nu_j}{a vector of numeric, corresponding of a column (sampling effort) effect.}
 
 \item{alpha_c}{alpha_c.}
 
-\item{a}{a.}
+\item{a}{a numeric dispersion parameter (parameter of the gamma distribution).}
 }
 \value{
 A list of 4 elements.
@@ -32,6 +39,6 @@ A list of 4 elements.
 }
 }
 \description{
-Calculate E_q(U_{ijr}) and E_q(log U_{ijr}) when U_ijr follows a Gamma(a,a)
+Calculate approximate conditional moment of the third hidden layer U
 }
 \keyword{internal}

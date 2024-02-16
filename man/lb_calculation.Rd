@@ -4,12 +4,24 @@
 \alias{lb_calculation}
 \title{Calculate the lower bound}
 \usage{
-lb_calculation(x = x, qu_param = qu_param, s_ik = s_ik, pi_c = pi_c,
-  t_jg = t_jg, rho_c = rho_c, mu_i = mu_i, nu_j = nu_j,
-  alpha_c = alpha_c, a = a, akg = TRUE)
+lb_calculation(
+  x = x,
+  qu_param = qu_param,
+  s_ik = s_ik,
+  pi_c = pi_c,
+  t_jg = t_jg,
+  rho_c = rho_c,
+  mu_i = mu_i,
+  nu_j = nu_j,
+  alpha_c = alpha_c,
+  a = a,
+  akg = TRUE
+)
 }
 \arguments{
 \item{x}{a matrix of observations. Columns correspond to biological samples and rows to microorganisms.}
+
+\item{qu_param}{qu_param.}
 
 \item{s_ik}{s_ik.}
 
@@ -27,9 +39,7 @@ lb_calculation(x = x, qu_param = qu_param, s_ik = s_ik, pi_c = pi_c,
 
 \item{a}{a.}
 
-\item{akg}{a logical variable indicating whether to use a common dispersion parameter (akg = FALSE) or a dispersion parameter per cocluster (akg = TRUE).}
-
-\item{qu.param}{qu.param.}
+\item{akg}{a logical variable indicating whether to use a common dispersion parameter (\code{akg = FALSE}) or a dispersion parameter per cocluster (\code{akg = TRUE}).}
 }
 \value{
 a list of 2 elements.

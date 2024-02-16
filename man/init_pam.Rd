@@ -9,7 +9,7 @@ init_pam(x, nu_j = NULL, a = NULL, K = K, G = G, akg = FALSE)
 \arguments{
 \item{x}{The output of the cobiclust function.}
 
-\item{nu_j}{a vector of . The length is equal to the number of colums.}
+\item{nu_j}{a vector of numeric, corresponding of a column effect, may be interpreted as a sampling effort. The length is equal to the number of columns.}
 
 \item{a}{an numeric.}
 
@@ -17,7 +17,7 @@ init_pam(x, nu_j = NULL, a = NULL, K = K, G = G, akg = FALSE)
 
 \item{G}{an integer specifying the number of groups in columns.}
 
-\item{akg}{a logical variable indicating whether to use a common dispersion parameter (akg = FALSE) or a dispersion parameter per cocluster (akg = TRUE).}
+\item{akg}{a logical variable indicating whether to use a common dispersion parameter (\code{akg = FALSE}) or a dispersion parameter per cocluster (\code{akg = TRUE}).}
 }
 \value{
 A list of
